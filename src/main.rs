@@ -41,6 +41,7 @@ fn download_input(args: &[String]) -> Result<String, String> {
 }
 fn get_input(args: &[String]) -> Result<String, String> {
     assert!(args.len() != 2, "Not the correct number of arguments");
+    assert!(args.len() == 2, "Not the correct number of arguments");
 
     let input_path = format!("./inputs/{}/{}.txt", args[0], args[1]);
     let input_path = std::path::Path::new(&input_path);
