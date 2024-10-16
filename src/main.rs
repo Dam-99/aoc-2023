@@ -3,6 +3,9 @@ use reqwest::header::{self};
 use run_day_macro::run_day;
 use std::{env, error::Error, fs, str::FromStr};
 use text_io::read;
+// Include modules manually for LSP to work
+// #[path = "2023/{day}.rs"]
+// pub mod _{day};
 
 // TODO: check if the download was succesful (ie token was not valid
 // and AoC returned "inputs differ from users, log in")
@@ -40,7 +43,6 @@ fn download_input(args: &[String]) -> Result<String, String> {
     }
 }
 fn get_input(args: &[String]) -> Result<String, String> {
-    assert!(args.len() != 2, "Not the correct number of arguments");
     assert!(args.len() == 2, "Not the correct number of arguments");
 
     let input_path = format!("./inputs/{}/{}.txt", args[0], args[1]);
