@@ -27,8 +27,8 @@ pub fn run_day(macro_input: TokenStream) -> TokenStream {
             },
             Err(_) => continue
         }
-        code += "_ => Err(\"Day not found or doesn't implement the run function\".to_string())}";
     }
+    code += "_ => Err(\"Day not found or doesn't implement the run function\".to_string())}";
     let parsed_code = syn::parse_str::<ExprMatch>(code.as_str());//.expect("Error generating macro code");
     let parsed_code = match parsed_code {
         Ok(o) => o.into(),
