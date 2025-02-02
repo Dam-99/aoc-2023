@@ -160,7 +160,7 @@ fn part_2(input: String) -> Result<String, String> {
                         if curr == '*' {
                             let curr_coords = Coords { x: x as u32, y: y as u32 };
                             let num_parsed = num.parse::<u32>().unwrap();
-                            let mut opt_gear = gears.get(&curr_coords);
+                            let opt_gear = gears.get(&curr_coords);
                             match opt_gear {
                                 None => gears.insert(curr_coords,
                                     Gear { coords: curr_coords, num1: Some(num_parsed), num2: None, },),
@@ -175,7 +175,7 @@ fn part_2(input: String) -> Result<String, String> {
             }
         }
     }
-    let filtered_gears = gears.iter().map(|(_, g)| g).filter(|g| !g.num2.is_none());
+    let filtered_gears = gears.values().filter(|g| g.num2.is_some());
     let result: u32 = filtered_gears
         .map(|g| g.num1.unwrap() * g.num2.unwrap())
         .sum();
